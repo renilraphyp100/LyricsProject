@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   
   resources :albums
+  resources :artists
   resources :songs
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,20 @@
+<h1>Artists</h1>
+ <%= link_to 'New article', new_artist_path, class: "btn btn-primary" %>
+ <br>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>View</th>
+     <th>Edit</th>
+  </tr>
+ 
+  <% @artists.each do |artist| %>
+    <tr>
+      <td><%= artist.name %></td>
+      <td><%= artist.description %></td>
+      <td><%= link_to 'Show', artist_path(artist) %></td>
+      <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
+    </tr>
+  <% end %>
+</table>

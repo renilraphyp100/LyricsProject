@@ -1,0 +1,19 @@
+<h1>Songs</h1>
+ <%= link_to 'New song', new_song_path, class: "btn btn-primary" %>
+ <br> <br>
+ 
+  <% @songs.each do |song| %>
+    <div class="row well">
+      <div class="col-md-8">
+        <h2><%= song.title %></h2>
+        <p><%= song.lyrics %></p>
+        <p><%= link_to 'Show', song_path(song), class: "btn btn-default" %>
+        <% if song.user == current_user %>
+          <%= link_to 'Edit', edit_song_path(song), class: "btn btn-default"  %></p>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <p><%= song.youtube_url %></p>
+      </div>
+    </div>
+  <% end %>

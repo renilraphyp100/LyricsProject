@@ -1,6 +1,7 @@
-<h1>Create an song:</h1>
-<%= form_for :song, url: songs_path do |f| %>
-
+<h1>Editing song</h1>
+ 
+<%= form_for :song, url: song_path(@song), method: :patch do |f| %>
+ 
   <% if @song.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -29,7 +30,7 @@
     <%= f.label :youtube_url %><br>
     <%= f.text_field :youtube_url %>
   </p>
-  
+ 
   <p>
     <%= f.submit %>
   </p>

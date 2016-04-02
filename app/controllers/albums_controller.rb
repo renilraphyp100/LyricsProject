@@ -22,7 +22,6 @@ class AlbumsController < ApplicationController
   
   def show
     @album = Album.find(params[:id])
-    @song = @album.songs.new
   end
   
   def edit

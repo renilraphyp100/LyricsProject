@@ -6,11 +6,11 @@ class AlbumsController < ApplicationController
   end
   
   def new
-    @album = current_user.albums.new
+    @album = Album.new
   end
   
   def create
-    @album = current_user.albums.new(album_params)
+    @album = Album.new(album_params)
  
     if @album.save
       redirect_to @album
@@ -22,20 +22,15 @@ class AlbumsController < ApplicationController
   
   def show
     @album = Album.find(params[:id])
+    @song = @album.songs.new
   end
   
   def edit
     @album = Album.find(params[:id])
-    if @album.user != current_user
-      redirect_to @album
-    end
   end
   
   def update
     @album = Album.find(params[:id])
-    if @album.user != current_user
-      redirect_to @album
-    end
    
     if @album.update(album_params)
       redirect_to @album

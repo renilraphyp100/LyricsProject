@@ -48,5 +48,6 @@ end
 
 # ----- Custom gem files by Renil -----
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+gem 'devise', '~> 3.5', '>= 3.5.6'
 # ----- End of custom gem files -------
 

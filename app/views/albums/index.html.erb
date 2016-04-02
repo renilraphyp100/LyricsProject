@@ -1,0 +1,19 @@
+<h1>Albums</h1>
+ <%= link_to 'New article', new_album_path, class: "btn btn-primary" %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @albums.each do |album| %>
+    <tr>
+      <td><%= album.name %></td>
+      <td><%= album.description %></td>
+      <td><%= link_to 'Show', album_path(album) %></td>
+      <% if album.user == current_user %>
+          <td><%= link_to 'Edit', edit_album_path(album) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

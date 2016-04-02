@@ -1,6 +1,7 @@
-<h1>Create an album:</h1>
-<%= form_for :album, url: albums_path do |f| %>
-
+<h1>Editing Album</h1>
+ 
+<%= form_for :album, url: album_path(@album), method: :patch do |f| %>
+ 
   <% if @album.errors.any? %>
     <div id="error_explanation">
       <h2>

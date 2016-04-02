@@ -1,9 +1,12 @@
+<h1>View Album</h1>
 <p>
   <strong>Name:</strong>
-  <%= @article.title %>
+  <%= @album.name %>
 </p>
  
 <p>
   <strong>Description:</strong>
-  <%= @article.text %>
+  <%= @album.description %>
 </p>
+
+<%= link_to 'Back', albums_path %>

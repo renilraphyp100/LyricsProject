@@ -15,9 +15,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <% if user_signed_in? %>
         <ul class="nav navbar-nav">
-          <li class="active"><%= link_to "Songs", songs_path %></li>
-          <li><%= link_to "Artists", artists_path %></li>
-          <li><%= link_to "Albums", albums_path %></li>
+          <li class="<%= 'active' if params[:controller] == 'songs' %>"><%= link_to "Songs", songs_path %></li>
+          <li class="<%= 'active' if params[:controller] == 'artists' %>"><%= link_to "Artists", artists_path %></li>
+          <li class="<%= 'active' if params[:controller] == 'albums' %>"><%= link_to "Albums", albums_path %></li>
         </ul>
       <% end %>
       <ul class="nav navbar-nav navbar-right">

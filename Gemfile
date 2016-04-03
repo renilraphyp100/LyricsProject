@@ -53,5 +53,8 @@ gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'carrierwave', '~> 0.11.0'
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 
+gem 'will_paginate', '~> 3.1'
+gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
+
 # ----- End of custom gem files -------
 

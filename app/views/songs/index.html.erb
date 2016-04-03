@@ -1,7 +1,17 @@
 <h1>Songs</h1>
- <%= link_to 'New song', new_song_path, class: "btn btn-primary" %>
- <br> <br>
  
+ <div class="row">
+   <div class="col-md-6">
+      <%= link_to 'New song', new_song_path, class: "btn btn-primary" %>
+   </div>
+   <div class="col-md-6">
+     <div class="pull-right">
+      <%= will_paginate @songs, renderer: BootstrapPagination::Rails %>
+     </div>
+   </div>
+ </div>
+ 
+ <br>
   <% @songs.each do |song| %>
     <div class="row well">
       <div class="col-md-8">

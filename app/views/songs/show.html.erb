@@ -1,11 +1,13 @@
 <h1>View song</h1>
     <div class="row well">
       <div class="col-md-8">
-        <h2><%= @song.title %></h2>
-        <p><%= @song.lyrics %></p>
+        <h3><%= @song.title %></h3>
+        <p><%= @song.lyrics.gsub(/\n/, '<br/>').html_safe %></p>
+        <p><b>Album</b>: <%= Album.find(@song.album_id).name if @song.album_id?  %></p>
+        <p><b>Artist</b>: <%= Artist.find(@song.artist_id).name if @song.artist_id? %></p>
       </div>
       <div class="col-md-4">
-        <% if @song.youtube_url %></p>
+        <% if @song.youtube_url? %></p>
           <%= youtube_embed(@song.youtube_url).html_safe %>
         <% end %>
       </div>

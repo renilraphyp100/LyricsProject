@@ -4,4 +4,6 @@ class Song < ActiveRecord::Base
   
   validates :title, presence: true, length: { minimum: 5 }
   validates :lyrics, presence: true
+  validates :album_id, presence: true
+  validates :artist_id, presence: true
 end

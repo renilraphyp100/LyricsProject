@@ -5,15 +5,19 @@
   <% @songs.each do |song| %>
     <div class="row well">
       <div class="col-md-8">
-        <h2><%= song.title %></h2>
-        <p><%= song.lyrics %></p>
-        <p><%= link_to 'Show', song_path(song), class: "btn btn-default" %>
+        <h3><%= song.title %></h3>
+        <p><b>Album</b>: <%= Album.find(song.album_id).name if song.album_id?  %></p>
+        <p><b>Artist</b>: <%= Artist.find(song.artist_id).name if song.artist_id? %></p>
+        
+        <p><b>Lyrics</b>: <%= truncate song.lyrics.gsub(/\n/, '<br/>').html_safe, length:20 %></p>
+
+        <p><%= link_to 'View complete lyrics', song_path(song), class: "btn btn-default" %>
         <% if song.user == current_user %>
           <%= link_to 'Edit', edit_song_path(song), class: "btn btn-default"  %></p>
         <% end %>
       </div>
       <div class="col-md-4">
-        <% if song.youtube_url %>
+        <% if song.youtube_url? %>
           <%= youtube_embed(song.youtube_url).html_safe %>
         <% end %>
         

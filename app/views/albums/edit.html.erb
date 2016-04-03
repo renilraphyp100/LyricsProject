@@ -1,34 +1,22 @@
 <h1>Editing Album</h1>
  
 <%= form_for :album, url: album_path(@album), method: :patch, html: { multipart: true } do |f| %>
- 
-  <% if @album.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@album.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @album.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  
+  <%= render :partial => "layouts/error", :locals => {:object => @album} %>
 
   <p>
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </p>
  
   <p>
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: "form-control" %>
   </p>
   
-  <span class="picture">
+  <p class="picture">
     <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-  </span>
+  </p>
  
   <p>
     <%= f.submit %>

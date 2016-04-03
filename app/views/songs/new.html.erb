@@ -1,33 +1,31 @@
 <h1>Create an song:</h1>
 <%= form_for :song, url: songs_path do |f| %>
-
-  <% if @song.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@song.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @song.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  
+  <%= render :partial => "layouts/error", :locals => {:object => @song} %>
 
   <p>
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </p>
  
   <p>
     <%= f.label :lyrics %><br>
-    <%= f.text_area :lyrics %>
+    <%= f.text_area :lyrics, class: "form-control lyrics"  %>
   </p>
 
   <p>
     <%= f.label :youtube_url %><br>
-    <%= f.text_field :youtube_url %>
+    <%= f.text_field :youtube_url, class: "form-control"  %>
+  </p>
+  
+  <p>
+    <div>Select the album:</div>
+    <%= f.collection_select :album_id, Album.all, :id, :name, prompt: true  %>
+  </p>
+  
+  <p>
+    <div>Select the artist:</div>
+    <%= f.collection_select :artist_id, Artist.all, :id, :name, prompt: true  %>
   </p>
   
   <p>

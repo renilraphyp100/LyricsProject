@@ -1,29 +1,17 @@
 <h1>Editing Artist</h1>
  
 <%= form_for :artist, url: artist_path(@artist), method: :patch do |f| %>
- 
-  <% if @artist.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@artist.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @artist.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  
+  <%= render :partial => "layouts/error", :locals => {:object => @artist} %>
 
   <p>
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </p>
  
   <p>
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: "form-control" %>
   </p>
  
   <p>

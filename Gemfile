@@ -49,5 +49,9 @@ end
 # ----- Custom gem files by Renil -----
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'devise', '~> 3.5', '>= 3.5.6'
+
+gem 'carrierwave', '~> 0.11.0'
+gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+
 # ----- End of custom gem files -------
 

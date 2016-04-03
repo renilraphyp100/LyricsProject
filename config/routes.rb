@@ -2,9 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
   root 'welcome#index'
   
-  resources :albums
   resources :artists
-  resources :songs
+  resources :albums do
+    resources :comments, module: :albums
+  end
+  resources :songs do
+    resources :comments, module: :songs
+  end
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

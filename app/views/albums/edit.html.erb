@@ -1,6 +1,6 @@
 <h1>Editing Album</h1>
  
-<%= form_for :album, url: album_path(@album), method: :patch do |f| %>
+<%= form_for :album, url: album_path(@album), method: :patch, html: { multipart: true } do |f| %>
  
   <% if @album.errors.any? %>
     <div id="error_explanation">
@@ -25,6 +25,10 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </p>
+  
+  <span class="picture">
+    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+  </span>
  
   <p>
     <%= f.submit %>

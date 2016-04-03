@@ -13,7 +13,10 @@
         <% end %>
       </div>
       <div class="col-md-4">
-        <p><%= song.youtube_url %></p>
+        <% if song.youtube_url %>
+          <%= youtube_embed(song.youtube_url).html_safe %>
+        <% end %>
+        
       </div>
     </div>
   <% end %>

@@ -1,5 +1,7 @@
 class Album < ActiveRecord::Base
+    belongs_to :artist
     has_many :comments, as: :commentable
+    
     
     validates :name, presence: true, length: { minimum: 5 }
     validates :description, presence: true

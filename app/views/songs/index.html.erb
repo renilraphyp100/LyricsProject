@@ -3,11 +3,16 @@
  <div class="row">
    <div class="col-md-6">
       <%= link_to 'New song', new_song_path, class: "btn btn-primary" %>
+      <a class="btn btn-xs btn-default" href="/songs?sort_by=title">Sort by title</a>
+      <a class="btn btn-xs btn-default" href="/songs">Sort by time</a>
    </div>
    <div class="col-md-6">
      <div class="pull-right">
       <%= will_paginate @songs, renderer: BootstrapPagination::Rails %>
      </div>
+
+
+     
    </div>
  </div>
  
@@ -25,6 +30,10 @@
         <% if song.user == current_user %>
           <%= link_to 'Edit', edit_song_path(song), class: "btn btn-default"  %></p>
         <% end %>
+        
+        <div>
+          Rate the quality  : <%= rating_for song, "quality", :disable_after_rate => false %>
+         </div>
       </div>
       <div class="col-md-4">
         <% if song.youtube_url? %>

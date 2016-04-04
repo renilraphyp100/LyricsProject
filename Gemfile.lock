@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/wazery/ratyrate.git
+  revision: 61487c4726c06748218fe082f85e5a253b69e225
+  specs:
+    ratyrate (1.2.2.alpha)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -178,6 +184,7 @@ DEPENDENCIES
   jquery-rails
   mini_magick (~> 4.5, >= 4.5.1)
   rails (= 4.2.5)
+  ratyrate!
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

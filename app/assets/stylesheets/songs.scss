@@ -5,3 +5,25 @@
 .lyrics {
     min-height: 200px;
 }
+
+
+.field_with_errors input{
+    border-color: #a94442 !important;
+}
+
+.field_with_errors textarea {
+     border-color: #a94442 !important;
+}
+
+.field_with_errors select {
+     border: 1px solid #a94442 !important;
+    border-radius: 4px;
+}
+
+.error_ul {
+    color: #a94442;
+}
+
+.create_a_new_song_btn {
+    margin-left:10px;
+}

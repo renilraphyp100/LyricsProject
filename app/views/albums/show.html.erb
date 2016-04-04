@@ -3,6 +3,11 @@
   <strong>Name:</strong>
   <%= @album.name %>
 </p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @album.artist.name if @album.artist_id? %>
+</p>
  
 <p>
   <strong>Description:</strong>
@@ -38,3 +43,21 @@
   
 
 <%= link_to 'Back', albums_path %>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#new_comment input[name=commit]").on('click',function(e){
+      e.preventDefault();
+      comment = $('textarea#comment_comment').val();
+      if (comment.trim().length > 0) {
+        $("#new_comment").submit();
+        return true;
+      }
+      else{
+        $("#comment_comment").css("border","1px solid #a94442").css("border-radius","4px");
+      }
+    });
+});
+</script>

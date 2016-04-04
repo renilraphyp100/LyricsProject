@@ -1,16 +1,20 @@
 <h1>Create an song:</h1>
-<%= form_for :song, url: songs_path do |f| %>
-  
-  <%= render :partial => "layouts/error", :locals => {:object => @song} %>
-
+<%= form_for :song, url: songs_path, html: {id: "new_song_create"} do |f| %>
   <p>
     <%= f.label :title %><br>
-    <%= f.text_field :title, class: "form-control" %>
+    <%= f.text_field :title, class: "form-control custom_required", data: {
+      validation: "required validate_min_length length5" } %>
+    <%  if @song.errors[:title].size != 0 %>
+      <ul class="error_ul"><br><% @song.errors[:title].each do |error| %><li><%= error %></li><% end %></ul>
+    <% end %>
   </p>
  
   <p>
     <%= f.label :lyrics %><br>
-    <%= f.text_area :lyrics, class: "form-control lyrics"  %>
+    <%= f.text_area :lyrics, class: "form-control lyrics custom_required"  %>
+    <%  if @song.errors[:lyrics].size != 0 %>
+      <ul class="error_ul"><br><% @song.errors[:lyrics].each do |error| %><li><%= error %></li><% end %></ul>
+    <% end %>
   </p>
 
   <p>
@@ -19,17 +23,67 @@
   </p>
   
   <p>
-    <div>Select the album:</div>
-    <%= f.collection_select :album_id, Album.all, :id, :name, prompt: true  %>
+    <div><b>Select the artist:</b></div>
+    <%= f.collection_select :artist_id, @artists , :id, :name, {prompt: "Select an artist"}, {class: "form-control custom_required"}  %>
+    <%  if @song.errors[:artist_id].size != 0 %>
+      <ul class="error_ul"><br><% @song.errors[:artist_id].each do |error| %><li><%= error %></li><% end %></ul>
+    <% end %>
   </p>
   
   <p>
-    <div>Select the artist:</div>
-    <%= f.collection_select :artist_id, Artist.all, :id, :name, prompt: true  %>
+    <div><b>Select the album:</b></div>
+    <% if @albums != nil %>
+      <%= f.collection_select :album_id, @albums , :id, :name, {prompt: "Select an album"}, {class: "form-control custom_required"}  %>
+    <% else %>
+      <select name="song[album_id]" id="song_album_id" class="form-control custom_required">
+        <option value="">Select an album</option>
+      <select>
+    <% end %>
+    <%  if @song.errors[:album_id].size != 0 %>
+      <ul class="error_ul"><br><% @song.errors[:album_id].each do |error| %><li><%= error %></li><% end %></ul>
+    <% end %>
   </p>
-  
+  <br><br>
   <p>
-    <%= f.submit %>
+    <%= f.submit 'Create a new song', :class => 'btn btn-primary pull-right create_a_new_song_btn' %>
+    <%= link_to 'Back', songs_path, :class => 'btn btn-default pull-right' %>
   </p>
 <% end %>
-<%= link_to 'Back', songs_path %>
+<br><br><br><br><br><br><br><br>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#song_artist_id").on('change',function(){
+      var artist_id = $(this).val();
+      if (artist_id){
+         $.ajax({url: "/get_albums_of_artist/" + artist_id, dataType: "json", success: function(result){
+          $("#song_album_id").html(result["result"]);
+        }});
+      }
+    });
+    
+    $(".create_a_new_song_btn").on("click", function(e){
+      e.preventDefault();
+      
+      var false_count = 0;
+      $(".custom_required").each(function() {
+       
+        if ($(this).val() == "" ){
+          $(this).css("border","1px solid #a94442").css("border-radius","4px");
+          false_count = false_count + 1;
+        }
+        else {
+          $(this).css("border","1px solid #ccc").css("border-radius","4px");
+        }
+        
+        if (false_count == 0){
+          $("#new_song_create").submit();
+        }
+      });
+      
+      
+    });
+});
+</script>

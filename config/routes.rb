@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users
   root 'welcome#index'
   
@@ -9,6 +10,8 @@ Rails.application.routes.draw do
   resources :songs do
     resources :comments, module: :songs
   end
+  
+  get 'get_albums_of_artist/:artist_id' => 'songs#get_albums_of_artist'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

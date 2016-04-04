@@ -2,31 +2,47 @@
  
 <%= form_for :song, url: song_path(@song), method: :patch do |f| %>
 
-  <%= render :partial => "layouts/error", :locals => {:object => @song} %>
-
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title, class: "form-control" %>
+    <%  if @song.errors[:title].size != 0 %>
+      <ul class="error_ul"><br><% @song.errors[:title].each do |error| %><li><%= error %></li><% end %></ul>
+    <% end %>
   </p>
  
   <p>
     <%= f.label :lyrics %><br>
     <%= f.text_area :lyrics, class: "form-control lyrics" %>
+    <%  if @song.errors[:lyrics].size != 0 %>
+      <ul class="error_ul"><br><% @song.errors[:lyrics].each do |error| %><li><%= error %></li><% end %></ul>
+    <% end %>
   </p>
 
   <p>
     <%= f.label :youtube_url %><br>
     <%= f.text_field :youtube_url, class: "form-control" %>
   </p>
-  
+
   <p>
-    <div>Select the album:</div>
-    <%= f.collection_select :album_id, Album.all, :id, :name, prompt: true %>
+    <div><b>Select the artist:</b></div>
+    <%= f.collection_select :artist_id, @artists, :id, :name, prompt: true %>
+    <%  if @song.errors[:artist_id].size != 0 %>
+      <ul class="error_ul"><br><% @song.errors[:artist_id].each do |error| %><li><%= error %></li><% end %></ul>
+    <% end %>
   </p>
   
   <p>
-    <div>Select the artist:</div>
-    <%= f.collection_select :artist_id, Artist.all, :id, :name, prompt: true %>
+    <div><b>Select the album:</b></div>
+      <% if @albums != nil %>
+        <%= f.collection_select :album_id, @albums , :id, :name, prompt: true  %>
+      <% else %>
+        <select name="song[album_id]" id="song_album_id">
+          <option value="">Please select</option>
+        <select>
+      <% end %>
+    <%  if @song.errors[:album_id].size != 0 %>
+      <ul class="error_ul"><br><% @song.errors[:album_id].each do |error| %><li><%= error %></li><% end %></ul>
+    <% end %>
   </p>
  
   <p>
@@ -34,3 +50,19 @@
   </p>
 <% end %>
 <%= link_to 'Back', songs_path %>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#song_artist_id").on('change',function(){
+      var artist_id = $(this).val();
+      if (artist_id){
+         $.ajax({url: "/get_albums_of_artist/" + artist_id, dataType: "json", success: function(result){
+          $("#song_album_id").html(result["result"]);
+        }});
+      }
+    });
+});
+</script>
+

@@ -6,4 +6,7 @@ class Song < ActiveRecord::Base
   validates :lyrics, presence: true
   validates :album_id, presence: true
   validates :artist_id, presence: true
+  
+  ratyrate_rateable "quality"
+  
 end

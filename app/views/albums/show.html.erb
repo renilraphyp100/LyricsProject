@@ -8,18 +8,18 @@
   <strong>Artist:</strong>
   <%= @album.artist.name if @album.artist_id? %>
 </p>
- 
+
 <p>
   <strong>Description:</strong>
   <%= @album.description %>
 </p>
 
 <p>
-  <%= image_tag(@album.picture.url, size: "250x150") if @album.picture? %>
+  <%= image_tag(@album.picture.url, width: "250") if @album.picture? %>
 </p>
 
 
-<hr>    
+<hr>
     <h2>Comments</h2>
     <% @album.comments.each do |comment| %>
       <p>
@@ -27,8 +27,8 @@
         <%= comment.comment %>
       </p>
     <% end %>
-    
-  <hr> 
+
+  <hr>
   <h3>Add a comment:</h3>
   <%= form_for [@album, Comment.new] do |f| %>
 
@@ -40,7 +40,7 @@
       <%= f.submit %>
     </p>
   <% end %>
-  
+
 
 <%= link_to 'Back', albums_path %>
 

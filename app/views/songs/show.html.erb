@@ -15,17 +15,17 @@
         <% end %>
       </div>
     </div>
-    
-<hr>    
-    <h2>Comments</h2>
+
+<hr>
+    <h2 id="comments">Comments</h2>
     <% @song.comments.each do |comment| %>
         <p>
           <strong><%= comment.user.email %>:</strong>
           <%= comment.comment %>
         </p>
     <% end %>
-    
-  <hr> 
+
+  <hr>
   <h3>Add a comment:</h3>
   <%= form_for [@song, Comment.new] do |f| %>
 

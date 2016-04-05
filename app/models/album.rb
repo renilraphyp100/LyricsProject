@@ -1,5 +1,6 @@
 class Album < ActiveRecord::Base
   belongs_to :artist
+  has_many :songs
   has_many :comments, as: :commentable
 
   mount_uploader :picture, PictureUploader

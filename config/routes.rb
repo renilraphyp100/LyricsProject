@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :playlists
   post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users
   root 'welcome#index'

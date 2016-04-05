@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20160404140930) do
 
   create_table "albums", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        null: false
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160404140930) do
   add_index "albums", ["artist_id"], name: "index_albums_on_artist_id"
 
   create_table "artists", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        null: false
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 20160404140930) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string   "comment"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
+    t.string   "comment",          null: false
+    t.integer  "commentable_id",   null: false
+    t.string   "commentable_type", null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "user_id"
@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(version: 20160404140930) do
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
 
   create_table "songs", force: :cascade do |t|
-    t.string   "title"
-    t.text     "lyrics"
+    t.string   "title",       null: false
+    t.text     "lyrics",      null: false
     t.string   "youtube_url"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
